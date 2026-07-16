@@ -1,6 +1,4 @@
-from pathlib import Path
-
-html = r'''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
@@ -30,7 +28,8 @@ html = r'''<!DOCTYPE html>
 
     *{box-sizing:border-box}
 
-    html,body{
+    html,
+    body{
       margin:0;
       width:100%;
       min-height:100%;
@@ -48,8 +47,13 @@ html = r'''<!DOCTYPE html>
       -webkit-tap-highlight-color:transparent;
     }
 
-    button,a{font:inherit}
-    button{appearance:none;-webkit-appearance:none}
+    button,
+    a{font:inherit}
+
+    button{
+      appearance:none;
+      -webkit-appearance:none;
+    }
 
     .page{
       position:relative;
@@ -72,7 +76,15 @@ html = r'''<!DOCTYPE html>
       position:absolute;
       inset:-30%;
       z-index:-4;
-      background:conic-gradient(from 20deg,transparent,rgba(255,255,255,.55),transparent 34%,rgba(255,255,255,.3),transparent 70%);
+      background:
+        conic-gradient(
+          from 20deg,
+          transparent,
+          rgba(255,255,255,.55),
+          transparent 34%,
+          rgba(255,255,255,.3),
+          transparent 70%
+        );
       filter:blur(65px);
       animation:ambientMove 22s linear infinite;
     }
@@ -83,11 +95,14 @@ html = r'''<!DOCTYPE html>
       z-index:-3;
       opacity:.11;
       pointer-events:none;
-      background-image:radial-gradient(rgba(80,68,61,.2) .55px,transparent .55px);
+      background-image:
+        radial-gradient(rgba(80,68,61,.2) .55px,transparent .55px);
       background-size:5px 5px;
     }
 
-    @keyframes ambientMove{to{transform:rotate(360deg)}}
+    @keyframes ambientMove{
+      to{transform:rotate(360deg)}
+    }
 
     .botanical{
       position:absolute;
@@ -97,9 +112,22 @@ html = r'''<!DOCTYPE html>
       pointer-events:none;
     }
 
-    .botanical.top{left:-52px;top:-48px;transform:rotate(-18deg)}
-    .botanical.bottom{right:-55px;bottom:-52px;transform:rotate(162deg)}
-    .botanical svg{width:100%;height:100%}
+    .botanical.top{
+      left:-52px;
+      top:-48px;
+      transform:rotate(-18deg);
+    }
+
+    .botanical.bottom{
+      right:-55px;
+      bottom:-52px;
+      transform:rotate(162deg);
+    }
+
+    .botanical svg{
+      width:100%;
+      height:100%;
+    }
 
     .scene{
       position:relative;
@@ -124,7 +152,11 @@ html = r'''<!DOCTYPE html>
       z-index:50;
     }
 
-    .progress{display:flex;gap:8px;margin-top:2px}
+    .progress{
+      display:flex;
+      gap:8px;
+      margin-top:2px;
+    }
 
     .dot{
       width:7px;
@@ -189,7 +221,10 @@ html = r'''<!DOCTYPE html>
     }
 
     @keyframes tapBeat{
-      50%{transform:scale(.45);opacity:.35}
+      50%{
+        transform:scale(.45);
+        opacity:.35;
+      }
     }
 
     .center-area{
@@ -245,7 +280,11 @@ html = r'''<!DOCTYPE html>
         0
         0
         calc(min(84vw,370px)/2);
-      border-color:transparent transparent transparent #eee4d8;
+      border-color:
+        transparent
+        transparent
+        transparent
+        #eee4d8;
     }
 
     .envelope::after{
@@ -255,7 +294,11 @@ html = r'''<!DOCTYPE html>
         calc(min(84vw,370px)/2)
         0
         0;
-      border-color:transparent #e2d3c4 transparent transparent;
+      border-color:
+        transparent
+        #e2d3c4
+        transparent
+        transparent;
     }
 
     .flap{
@@ -298,7 +341,8 @@ html = r'''<!DOCTYPE html>
       color:#fff8ea;
       font-size:clamp(17px,4.8vw,21px);
       letter-spacing:.1em;
-      background:radial-gradient(circle at 34% 28%,#d3b681,#a47b43 68%,#7e5b31);
+      background:
+        radial-gradient(circle at 34% 28%,#d3b681,#a47b43 68%,#7e5b31);
       border:3px double rgba(255,249,231,.7);
       box-shadow:0 10px 24px rgba(85,58,30,.32);
       animation:waxPulse 1.8s ease-in-out infinite;
@@ -314,8 +358,14 @@ html = r'''<!DOCTYPE html>
     }
 
     @keyframes waxPulse{
-      0%,100%{transform:translate(-50%,-50%) scale(1)}
-      50%{transform:translate(-50%,-50%) scale(1.07)}
+      0%,100%{
+        transform:translate(-50%,-50%) scale(1);
+      }
+
+      50%{
+        transform:translate(-50%,-50%) scale(1.07);
+        box-shadow:0 14px 32px rgba(164,123,67,.43);
+      }
     }
 
     .envelope-wrap.broken .wax{
@@ -394,7 +444,9 @@ html = r'''<!DOCTYPE html>
       opacity:.75;
     }
 
-    .bottom-spacer{height:6px}
+    .bottom-spacer{
+      height:6px;
+    }
 
     .full{
       position:fixed;
@@ -421,7 +473,12 @@ html = r'''<!DOCTYPE html>
     .panel{
       position:relative;
       width:min(94vw,430px);
-      max-height:calc(100dvh - max(20px,env(safe-area-inset-top)) - max(20px,env(safe-area-inset-bottom)));
+      max-height:
+        calc(
+          100dvh -
+          max(20px,env(safe-area-inset-top)) -
+          max(20px,env(safe-area-inset-bottom))
+        );
       overflow-y:auto;
       -webkit-overflow-scrolling:touch;
       scrollbar-width:none;
@@ -433,7 +490,9 @@ html = r'''<!DOCTYPE html>
       box-shadow:var(--shadow);
     }
 
-    .panel::-webkit-scrollbar{display:none}
+    .panel::-webkit-scrollbar{
+      display:none;
+    }
 
     .panel::before{
       content:"";
@@ -465,6 +524,10 @@ html = r'''<!DOCTYPE html>
       z-index:5;
     }
 
+    .music-button.playing{
+      box-shadow:0 0 0 5px rgba(180,151,104,.12);
+    }
+
     .crest{
       width:100px;
       height:54px;
@@ -490,7 +553,13 @@ html = r'''<!DOCTYPE html>
     .divider{
       height:1px;
       margin:17px 0;
-      background:linear-gradient(90deg,transparent,rgba(180,151,104,.75),transparent);
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(180,151,104,.75),
+          transparent
+        );
     }
 
     .message{
@@ -612,32 +681,80 @@ html = r'''<!DOCTYPE html>
     }
 
     @media(max-height:650px){
-      .top-area{min-height:61px;gap:7px}
-      .instruction{min-height:36px;padding:7px 11px}
-      .envelope-wrap{width:min(70vw,315px);max-height:41dvh}
-      .panel{padding:21px 18px 19px}
-      .crest{height:39px}
-      .divider{margin:11px 0}
-      .message{margin-bottom:11px;line-height:1.48}
-      .detail{padding:8px}
-      .countdown-title{margin-top:11px}
-      .time{padding:7px 2px}
-      .button{min-height:40px}
+      .top-area{
+        min-height:61px;
+        gap:7px;
+      }
+
+      .instruction{
+        min-height:36px;
+        padding:7px 11px;
+      }
+
+      .envelope-wrap{
+        width:min(70vw,315px);
+        max-height:41dvh;
+      }
+
+      .panel{
+        padding:21px 18px 19px;
+      }
+
+      .crest{
+        height:39px;
+      }
+
+      .divider{
+        margin:11px 0;
+      }
+
+      .message{
+        margin-bottom:11px;
+        line-height:1.48;
+      }
+
+      .detail{
+        padding:8px;
+      }
+
+      .countdown-title{
+        margin-top:11px;
+      }
+
+      .time{
+        padding:7px 2px;
+      }
+
+      .button{
+        min-height:40px;
+      }
     }
 
     @media(max-width:360px){
-      .instruction{font-size:9px;letter-spacing:.06em}
-      .panel{padding-left:16px;padding-right:16px}
-      .countdown{gap:5px}
+      .instruction{
+        font-size:9px;
+        letter-spacing:.06em;
+      }
+
+      .panel{
+        padding-left:16px;
+        padding-right:16px;
+      }
+
+      .countdown{
+        gap:5px;
+      }
     }
   </style>
 </head>
 
 <body>
-
-  <!-- GitHub'a muzik.mp3 adıyla yüklediğin ses burada çalacak -->
-  <audio id="backgroundMusic" loop preload="auto">
-    <source src="muzik.mp3" type="audio/mpeg">
+  <!--
+    GitHub projesine index.html ile aynı klasöre
+    music.mp3 adlı ses dosyasını yüklemelisin.
+  -->
+  <audio id="backgroundMusic" preload="auto" loop playsinline>
+    <source src="music.mp3" type="audio/mpeg">
   </audio>
 
   <main class="page">
@@ -704,7 +821,9 @@ html = r'''<!DOCTYPE html>
 
         <div class="full" id="fullInvitation">
           <article class="panel">
-            <button type="button" class="music-button" id="musicButton" aria-label="Müziği aç veya kapat">II</button>
+            <button type="button" class="music-button" id="musicButton" aria-label="Müziği aç veya kapat">
+              II
+            </button>
 
             <svg class="crest" viewBox="0 0 112 62" aria-hidden="true">
               <path d="M15 52 C20 24 36 10 56 7 C76 10 92 24 97 52" fill="none" stroke="#9db4a2" stroke-width="1.4"/>
@@ -744,8 +863,13 @@ html = r'''<!DOCTYPE html>
             </div>
 
             <div class="buttons">
-              <button type="button" class="button location" id="locationButton">Konuma Git</button>
-              <button type="button" class="button restart" id="restartButton">Davetiyeyi Baştan Aç</button>
+              <button type="button" class="button location" id="locationButton">
+                Konuma Git
+              </button>
+
+              <button type="button" class="button restart" id="restartButton">
+                Davetiyeyi Baştan Aç
+              </button>
             </div>
           </article>
         </div>
@@ -769,6 +893,8 @@ html = r'''<!DOCTYPE html>
     let step = 0;
     let musicStarted = false;
 
+    backgroundMusic.volume = 0.35;
+
     const instructionTexts = [
       "Davetiyeyi açmak için zarfa dokunun",
       "Zarfı açmak için tekrar dokunun",
@@ -777,27 +903,36 @@ html = r'''<!DOCTYPE html>
     ];
 
     function updateProgress(index){
-      dots.forEach((dot,dotIndex)=>{
+      dots.forEach(function(dot,dotIndex){
         dot.classList.toggle("active",dotIndex===index);
       });
     }
 
     async function startMusic(){
       try{
-        backgroundMusic.volume = 0.22;
+        backgroundMusic.muted = false;
+        backgroundMusic.volume = 0.35;
+
         await backgroundMusic.play();
+
         musicStarted = true;
         musicButton.textContent = "II";
+        musicButton.classList.add("playing");
       }catch(error){
         musicStarted = false;
         musicButton.textContent = "♪";
+        musicButton.classList.remove("playing");
+
         console.log("Müzik başlatılamadı:",error);
       }
     }
 
     function stopMusic(){
       backgroundMusic.pause();
+
+      musicStarted = false;
       musicButton.textContent = "♪";
+      musicButton.classList.remove("playing");
     }
 
     envelope.addEventListener("click",async function(){
@@ -809,62 +944,63 @@ html = r'''<!DOCTYPE html>
 
       if(step===1){
         envelope.classList.add("broken");
-        instructionText.textContent=instructionTexts[1];
+        instructionText.textContent = instructionTexts[1];
         updateProgress(1);
       }else if(step===2){
         envelope.classList.add("open");
-        instructionText.textContent=instructionTexts[2];
+        instructionText.textContent = instructionTexts[2];
         updateProgress(2);
       }else if(step===3){
         envelope.classList.add("card-up");
-        instructionText.textContent=instructionTexts[3];
+        instructionText.textContent = instructionTexts[3];
         updateProgress(3);
         createPetals(16);
       }else if(step===4){
         envelope.classList.add("hide");
         fullInvitation.classList.add("show");
-        instruction.style.visibility="hidden";
+        instruction.style.visibility = "hidden";
         createPetals(28);
       }
     });
 
     function createPetals(amount){
-      const colors=["#d9a7b4","#a9c4d2","#9db4a2","#e6c2ca"];
+      const colors = ["#d9a7b4","#a9c4d2","#9db4a2","#e6c2ca"];
 
       for(let index=0;index<amount;index++){
-        const petal=document.createElement("i");
-        petal.className="petal";
-        petal.style.left=Math.random()*100+"vw";
-        petal.style.background=colors[Math.floor(Math.random()*colors.length)];
-        petal.style.animationDuration=(5+Math.random()*5)+"s";
-        petal.style.animationDelay=(Math.random()*1.2)+"s";
-        petal.style.setProperty("--drift",(-80+Math.random()*160)+"px");
+        const petal = document.createElement("i");
+
+        petal.className = "petal";
+        petal.style.left = Math.random()*100+"vw";
+        petal.style.background = colors[Math.floor(Math.random()*colors.length)];
+        petal.style.animationDuration = 5+Math.random()*5+"s";
+        petal.style.animationDelay = Math.random()*1.2+"s";
+        petal.style.setProperty("--drift",-80+Math.random()*160+"px");
 
         document.body.appendChild(petal);
 
-        setTimeout(()=>{
+        setTimeout(function(){
           petal.remove();
         },11000);
       }
     }
 
     function updateCountdown(){
-      const targetDate=new Date("2026-07-25T20:00:00+03:00").getTime();
-      let difference=Math.max(0,targetDate-Date.now());
+      const targetDate = new Date("2026-07-25T20:00:00+03:00").getTime();
+      let difference = Math.max(0,targetDate-Date.now());
 
-      const days=Math.floor(difference/86400000);
-      difference%=86400000;
+      const days = Math.floor(difference/86400000);
+      difference %= 86400000;
 
-      const hours=Math.floor(difference/3600000);
-      difference%=3600000;
+      const hours = Math.floor(difference/3600000);
+      difference %= 3600000;
 
-      const minutes=Math.floor(difference/60000);
-      const seconds=Math.floor((difference%60000)/1000);
+      const minutes = Math.floor(difference/60000);
+      const seconds = Math.floor((difference%60000)/1000);
 
-      document.getElementById("days").textContent=days;
-      document.getElementById("hours").textContent=hours;
-      document.getElementById("minutes").textContent=minutes;
-      document.getElementById("seconds").textContent=seconds;
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
     }
 
     updateCountdown();
@@ -874,25 +1010,27 @@ html = r'''<!DOCTYPE html>
       event.preventDefault();
       event.stopPropagation();
 
-      const locationUrl=
+      const locationUrl =
         "https://www.google.com/maps/search/?api=1&query="+
         encodeURIComponent("Loren Event Fatih D100 Yanyolu No 542 Düzce");
 
-      window.location.href=locationUrl;
+      window.location.href = locationUrl;
     });
 
     restartButton.addEventListener("click",function(event){
       event.preventDefault();
       event.stopPropagation();
 
-      step=0;
+      step = 0;
+
       fullInvitation.classList.remove("show");
-      envelope.className="envelope-wrap";
-      instruction.style.visibility="visible";
-      instructionText.textContent=instructionTexts[0];
+      envelope.className = "envelope-wrap";
+      instruction.style.visibility = "visible";
+      instructionText.textContent = instructionTexts[0];
+
       updateProgress(0);
 
-      if(backgroundMusic.paused && musicStarted){
+      if(backgroundMusic.paused){
         startMusic();
       }
     });
@@ -907,11 +1045,24 @@ html = r'''<!DOCTYPE html>
         stopMusic();
       }
     });
+
+    backgroundMusic.addEventListener("play",function(){
+      musicStarted = true;
+      musicButton.textContent = "II";
+      musicButton.classList.add("playing");
+    });
+
+    backgroundMusic.addEventListener("pause",function(){
+      musicStarted = false;
+      musicButton.textContent = "♪";
+      musicButton.classList.remove("playing");
+    });
+
+    backgroundMusic.addEventListener("error",function(){
+      musicButton.textContent = "!";
+      musicButton.title = "music.mp3 dosyası bulunamadı";
+      console.log("music.mp3 dosyası yüklenmemiş veya dosya adı yanlış.");
+    });
   </script>
 </body>
 </html>
-'''
-
-path = Path("/mnt/data/index_muzikli.html")
-path.write_text(html, encoding="utf-8")
-print(path)
