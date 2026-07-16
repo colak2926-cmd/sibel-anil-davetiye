@@ -1,11 +1,14 @@
-<!DOCTYPE html>
+from pathlib import Path
+
+html = r'''<!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Sibel & Anıl | Nişan Davetiyesi</title>
 
+  <title>Sibel & Anıl | Nişan Davetiyesi</title>
   <meta name="description" content="Sibel ve Anıl'ın nişan törenine davetlisiniz.">
+
   <meta property="og:type" content="website">
   <meta property="og:title" content="Sibel & Anıl | Nişan Davetiyesi">
   <meta property="og:description" content="25 Temmuz 2026 • 20.00 • Loren Event">
@@ -26,7 +29,14 @@
     }
 
     *{box-sizing:border-box}
-    html,body{margin:0;width:100%;min-height:100%;overflow:hidden}
+
+    html,body{
+      margin:0;
+      width:100%;
+      min-height:100%;
+      overflow:hidden;
+    }
+
     body{
       color:var(--ink);
       font-family:Georgia,"Times New Roman",serif;
@@ -52,9 +62,9 @@
       display:grid;
       place-items:center;
       padding:
-        max(14px,env(safe-area-inset-top))
+        max(12px,env(safe-area-inset-top))
         14px
-        max(14px,env(safe-area-inset-bottom));
+        max(12px,env(safe-area-inset-bottom));
       isolation:isolate;
     }
 
@@ -64,7 +74,7 @@
       z-index:-4;
       background:conic-gradient(from 20deg,transparent,rgba(255,255,255,.55),transparent 34%,rgba(255,255,255,.3),transparent 70%);
       filter:blur(65px);
-      animation:ambient 22s linear infinite;
+      animation:ambientMove 22s linear infinite;
     }
 
     .grain{
@@ -77,7 +87,7 @@
       background-size:5px 5px;
     }
 
-    @keyframes ambient{to{transform:rotate(360deg)}}
+    @keyframes ambientMove{to{transform:rotate(360deg)}}
 
     .botanical{
       position:absolute;
@@ -86,6 +96,7 @@
       opacity:.64;
       pointer-events:none;
     }
+
     .botanical.top{left:-52px;top:-48px;transform:rotate(-18deg)}
     .botanical.bottom{right:-55px;bottom:-52px;transform:rotate(162deg)}
     .botanical svg{width:100%;height:100%}
@@ -99,36 +110,39 @@
       grid-template-rows:auto 1fr auto;
       align-items:center;
       justify-items:center;
-      padding:8px 0 6px;
+      padding:7px 0;
     }
 
     .top-area{
       width:100%;
-      min-height:74px;
+      min-height:76px;
       display:flex;
       flex-direction:column;
       align-items:center;
       justify-content:flex-start;
-      gap:13px;
-      z-index:40;
+      gap:12px;
+      z-index:50;
     }
 
-    .progress{
-      display:flex;
-      gap:8px;
-      margin-top:2px;
-    }
+    .progress{display:flex;gap:8px;margin-top:2px}
 
     .dot{
-      width:7px;height:7px;border-radius:50%;
+      width:7px;
+      height:7px;
+      border-radius:50%;
       background:rgba(180,151,104,.25);
       transition:.35s ease;
     }
-    .dot.active{width:25px;border-radius:999px;background:var(--gold)}
 
-    .top-instruction{
-      width:min(88vw,360px);
-      min-height:42px;
+    .dot.active{
+      width:25px;
+      border-radius:999px;
+      background:var(--gold);
+    }
+
+    .instruction{
+      width:min(90vw,370px);
+      min-height:44px;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -136,34 +150,47 @@
       padding:10px 14px;
       border-radius:999px;
       text-align:center;
-      background:rgba(255,253,248,.94);
-      border:1px solid rgba(180,151,104,.42);
-      box-shadow:0 10px 28px rgba(76,61,53,.14);
+      background:rgba(255,253,248,.96);
+      border:1px solid rgba(180,151,104,.48);
+      box-shadow:0 11px 30px rgba(76,61,53,.16);
       font-family:Arial,sans-serif;
       font-size:clamp(10px,2.8vw,12px);
       line-height:1.35;
       font-weight:800;
-      letter-spacing:.09em;
+      letter-spacing:.08em;
       color:#625a54;
       text-transform:uppercase;
-      animation:hint 1.8s ease-in-out infinite;
+      animation:instructionMove 1.8s ease-in-out infinite;
     }
 
     .tap-ring{
       position:relative;
-      width:18px;height:18px;flex:0 0 auto;
+      width:18px;
+      height:18px;
+      flex:0 0 auto;
       border-radius:50%;
       border:1.5px solid var(--gold);
     }
+
     .tap-ring::after{
       content:"";
-      position:absolute;inset:4px;border-radius:50%;
+      position:absolute;
+      inset:4px;
+      border-radius:50%;
       background:var(--gold);
-      animation:beat 1.2s ease-in-out infinite;
+      animation:tapBeat 1.2s ease-in-out infinite;
     }
 
-    @keyframes hint{50%{transform:translateY(3px);box-shadow:0 14px 34px rgba(76,61,53,.18)}}
-    @keyframes beat{50%{transform:scale(.45);opacity:.35}}
+    @keyframes instructionMove{
+      50%{
+        transform:translateY(3px);
+        box-shadow:0 15px 36px rgba(76,61,53,.2);
+      }
+    }
+
+    @keyframes tapBeat{
+      50%{transform:scale(.45);opacity:.35}
+    }
 
     .center-area{
       position:relative;
@@ -177,8 +204,8 @@
     .envelope-wrap{
       position:relative;
       width:min(84vw,370px);
-      aspect-ratio:1.52 / 1;
-      max-height:46dvh;
+      aspect-ratio:1.52/1;
+      max-height:47dvh;
       cursor:pointer;
       perspective:1400px;
       touch-action:manipulation;
@@ -188,7 +215,7 @@
 
     .envelope-wrap.hide{
       opacity:0;
-      transform:translateY(50px) scale(.92);
+      transform:translateY(45px) scale(.92);
       pointer-events:none;
     }
 
@@ -200,50 +227,67 @@
       box-shadow:var(--shadow);
     }
 
-    .envelope::before,.envelope::after{
+    .envelope::before,
+    .envelope::after{
       content:"";
       position:absolute;
       bottom:0;
-      width:0;height:0;
+      width:0;
+      height:0;
       border-style:solid;
       z-index:5;
     }
 
     .envelope::before{
       left:0;
-      border-width:calc(min(84vw,370px) / 3.05) 0 0 calc(min(84vw,370px) / 2);
+      border-width:
+        calc(min(84vw,370px)/3.05)
+        0
+        0
+        calc(min(84vw,370px)/2);
       border-color:transparent transparent transparent #eee4d8;
     }
 
     .envelope::after{
       right:0;
-      border-width:calc(min(84vw,370px) / 3.05) calc(min(84vw,370px) / 2) 0 0;
+      border-width:
+        calc(min(84vw,370px)/3.05)
+        calc(min(84vw,370px)/2)
+        0
+        0;
       border-color:transparent #e2d3c4 transparent transparent;
     }
 
     .flap{
       position:absolute;
-      top:0;left:0;
-      width:100%;height:61%;
+      top:0;
+      left:0;
+      width:100%;
+      height:61%;
       transform-origin:top center;
-      transform:rotateX(0);
+      transform:rotateX(0deg);
       transition:transform 1.1s cubic-bezier(.18,.76,.18,1);
       z-index:10;
     }
 
     .flap::before{
       content:"";
-      position:absolute;inset:0;
+      position:absolute;
+      inset:0;
       clip-path:polygon(0 0,100% 0,50% 100%);
       background:linear-gradient(160deg,#f7f1ea,#d9caba);
       border-radius:12px 12px 0 0;
     }
 
-    .envelope-wrap.open .flap{transform:rotateX(180deg);z-index:1}
+    .envelope-wrap.open .flap{
+      transform:rotateX(180deg);
+      z-index:1;
+    }
 
     .wax{
       position:absolute;
-      left:50%;top:40%;
+      left:50%;
+      top:40%;
       transform:translate(-50%,-50%);
       width:clamp(58px,17vw,74px);
       aspect-ratio:1;
@@ -263,14 +307,15 @@
 
     .wax::before{
       content:"";
-      position:absolute;inset:7px;
+      position:absolute;
+      inset:7px;
       border:1px solid rgba(255,249,231,.55);
       border-radius:50%;
     }
 
     @keyframes waxPulse{
       0%,100%{transform:translate(-50%,-50%) scale(1)}
-      50%{transform:translate(-50%,-50%) scale(1.06)}
+      50%{transform:translate(-50%,-50%) scale(1.07)}
     }
 
     .envelope-wrap.broken .wax{
@@ -290,12 +335,14 @@
       overflow:hidden;
       border-radius:14px;
       border:1px solid rgba(180,151,104,.34);
-      background:rgba(255,255,255,.95);
+      background:rgba(255,255,255,.96);
       box-shadow:0 16px 40px rgba(72,58,49,.18);
       transition:transform 1.15s cubic-bezier(.17,.84,.25,1);
     }
 
-    .envelope-wrap.card-up .small-card{transform:translate(-50%,-48%)}
+    .envelope-wrap.card-up .small-card{
+      transform:translate(-50%,-48%);
+    }
 
     .small-inner{
       height:100%;
@@ -310,7 +357,10 @@
       transition:.8s ease;
     }
 
-    .envelope-wrap.card-up .small-inner{opacity:1;transform:none}
+    .envelope-wrap.card-up .small-inner{
+      opacity:1;
+      transform:none;
+    }
 
     .small-kicker{
       font-family:Arial,sans-serif;
@@ -326,19 +376,36 @@
       font-weight:normal;
     }
 
-    .small-names i,.names i{color:var(--rose);font-weight:normal}
-    .small-date{font-size:clamp(14px,3.8vw,17px);color:#776f69}
+    .small-names i,
+    .names i{
+      color:var(--rose);
+      font-weight:normal;
+    }
 
-    .line-art{width:110px;height:27px;margin-top:18px;opacity:.75}
+    .small-date{
+      font-size:clamp(14px,3.8vw,17px);
+      color:#776f69;
+    }
 
-    .bottom-spacer{height:8px}
+    .line-art{
+      width:110px;
+      height:27px;
+      margin-top:18px;
+      opacity:.75;
+    }
+
+    .bottom-spacer{height:6px}
 
     .full{
-      position:absolute;
+      position:fixed;
       inset:0;
-      z-index:80;
+      z-index:100;
       display:grid;
       place-items:center;
+      padding:
+        max(10px,env(safe-area-inset-top))
+        12px
+        max(10px,env(safe-area-inset-bottom));
       opacity:0;
       transform:scale(.96);
       pointer-events:none;
@@ -362,34 +429,49 @@
       padding:28px 22px 24px;
       border-radius:24px;
       border:1px solid rgba(180,151,104,.3);
-      background:rgba(255,253,248,.95);
+      background:rgba(255,253,248,.97);
       box-shadow:var(--shadow);
     }
 
     .panel::-webkit-scrollbar{display:none}
+
     .panel::before{
       content:"";
-      position:absolute;inset:9px;
+      position:absolute;
+      inset:9px;
       border:1px solid rgba(180,151,104,.16);
       border-radius:18px;
       pointer-events:none;
       z-index:0;
     }
-    .panel>*{position:relative;z-index:2}
+
+    .panel>*{
+      position:relative;
+      z-index:2;
+    }
 
     .music-button{
       position:absolute;
-      top:13px;right:13px;
-      width:40px;height:40px;
+      top:13px;
+      right:13px;
+      width:40px;
+      height:40px;
       border-radius:50%;
       border:1px solid rgba(180,151,104,.32);
       background:#fff;
+      color:var(--ink);
       cursor:pointer;
       touch-action:manipulation;
       z-index:5;
     }
 
-    .crest{width:100px;height:54px;margin:0 auto 5px;opacity:.74}
+    .crest{
+      width:100px;
+      height:54px;
+      margin:0 auto 5px;
+      opacity:.74;
+    }
+
     .kicker{
       font-family:Arial,sans-serif;
       font-size:9px;
@@ -406,7 +488,8 @@
     }
 
     .divider{
-      height:1px;margin:17px 0;
+      height:1px;
+      margin:17px 0;
       background:linear-gradient(90deg,transparent,rgba(180,151,104,.75),transparent);
     }
 
@@ -417,7 +500,11 @@
       line-height:1.65;
     }
 
-    .details{display:grid;gap:9px}
+    .details{
+      display:grid;
+      gap:9px;
+    }
+
     .detail{
       padding:12px;
       border-radius:14px;
@@ -425,8 +512,19 @@
       background:rgba(255,255,255,.75);
     }
 
-    .detail strong{display:block;margin-bottom:4px;font-size:18px;font-weight:normal}
-    .detail span{font-family:Arial,sans-serif;font-size:12px;line-height:1.45;color:#6d6661}
+    .detail strong{
+      display:block;
+      margin-bottom:4px;
+      font-size:18px;
+      font-weight:normal;
+    }
+
+    .detail span{
+      font-family:Arial,sans-serif;
+      font-size:12px;
+      line-height:1.45;
+      color:#6d6661;
+    }
 
     .countdown-title{
       margin:18px 0 10px;
@@ -452,8 +550,18 @@
       background:#fff;
     }
 
-    .time b{display:block;font-size:clamp(18px,5vw,22px);font-weight:normal}
-    .time small{font-family:Arial,sans-serif;font-size:7px;letter-spacing:.06em;color:#887f78}
+    .time b{
+      display:block;
+      font-size:clamp(18px,5vw,22px);
+      font-weight:normal;
+    }
+
+    .time small{
+      font-family:Arial,sans-serif;
+      font-size:7px;
+      letter-spacing:.06em;
+      color:#887f78;
+    }
 
     .buttons{
       position:relative;
@@ -472,26 +580,31 @@
       color:#fff;
       font-family:Arial,sans-serif;
       font-weight:700;
-      text-decoration:none;
       cursor:pointer;
       touch-action:manipulation;
     }
 
-    .location{background:linear-gradient(135deg,#b8cabb,#91ad98)}
-    .restart{background:linear-gradient(135deg,#dfb2bd,#c88d9c)}
+    .location{
+      background:linear-gradient(135deg,#b8cabb,#91ad98);
+    }
+
+    .restart{
+      background:linear-gradient(135deg,#dfb2bd,#c88d9c);
+    }
 
     .petal{
       position:fixed;
       top:-25px;
-      width:11px;height:17px;
+      width:11px;
+      height:17px;
       border-radius:72% 28% 68% 32%;
       opacity:.65;
       pointer-events:none;
-      z-index:100;
-      animation:fall linear forwards;
+      z-index:200;
+      animation:petalFall linear forwards;
     }
 
-    @keyframes fall{
+    @keyframes petalFall{
       to{
         transform:translate3d(var(--drift),110dvh,0) rotate(540deg);
         opacity:.04;
@@ -499,21 +612,21 @@
     }
 
     @media(max-height:650px){
-      .top-area{min-height:62px;gap:8px}
-      .top-instruction{min-height:36px;padding:8px 12px}
-      .envelope-wrap{width:min(70vw,320px);max-height:42dvh}
-      .panel{padding:22px 18px 20px}
-      .crest{height:42px}
-      .divider{margin:12px 0}
-      .message{margin-bottom:12px;line-height:1.5}
-      .detail{padding:9px}
-      .countdown-title{margin-top:12px}
+      .top-area{min-height:61px;gap:7px}
+      .instruction{min-height:36px;padding:7px 11px}
+      .envelope-wrap{width:min(70vw,315px);max-height:41dvh}
+      .panel{padding:21px 18px 19px}
+      .crest{height:39px}
+      .divider{margin:11px 0}
+      .message{margin-bottom:11px;line-height:1.48}
+      .detail{padding:8px}
+      .countdown-title{margin-top:11px}
       .time{padding:7px 2px}
       .button{min-height:40px}
     }
 
     @media(max-width:360px){
-      .top-instruction{font-size:9px;letter-spacing:.07em}
+      .instruction{font-size:9px;letter-spacing:.06em}
       .panel{padding-left:16px;padding-right:16px}
       .countdown{gap:5px}
     }
@@ -521,6 +634,12 @@
 </head>
 
 <body>
+
+  <!-- GitHub'a muzik.mp3 adıyla yüklediğin ses burada çalacak -->
+  <audio id="backgroundMusic" loop preload="auto">
+    <source src="muzik.mp3" type="audio/mpeg">
+  </audio>
+
   <main class="page">
     <div class="ambient"></div>
     <div class="grain"></div>
@@ -556,7 +675,7 @@
           <span class="dot"></span>
         </div>
 
-        <div class="top-instruction" id="instruction">
+        <div class="instruction" id="instruction">
           <span class="tap-ring"></span>
           <span id="instructionText">Davetiyeyi açmak için zarfa dokunun</span>
         </div>
@@ -596,6 +715,7 @@
 
             <div class="kicker">Nişan Davetiyesi</div>
             <h1 class="names">Sibel <i>&</i> Anıl</h1>
+
             <div class="divider"></div>
 
             <p class="message">
@@ -643,11 +763,13 @@
     const restartButton = document.getElementById("restartButton");
     const locationButton = document.getElementById("locationButton");
     const musicButton = document.getElementById("musicButton");
+    const backgroundMusic = document.getElementById("backgroundMusic");
     const dots = [...document.querySelectorAll(".dot")];
 
     let step = 0;
+    let musicStarted = false;
 
-    const texts = [
+    const instructionTexts = [
       "Davetiyeyi açmak için zarfa dokunun",
       "Zarfı açmak için tekrar dokunun",
       "Kartı çıkarmak için yeniden dokunun",
@@ -655,26 +777,47 @@
     ];
 
     function updateProgress(index){
-      dots.forEach((dot,i)=>dot.classList.toggle("active",i===index));
+      dots.forEach((dot,dotIndex)=>{
+        dot.classList.toggle("active",dotIndex===index);
+      });
     }
 
-    envelope.addEventListener("click",function(){
-      if(step===0) startMusic();
+    async function startMusic(){
+      try{
+        backgroundMusic.volume = 0.22;
+        await backgroundMusic.play();
+        musicStarted = true;
+        musicButton.textContent = "II";
+      }catch(error){
+        musicStarted = false;
+        musicButton.textContent = "♪";
+        console.log("Müzik başlatılamadı:",error);
+      }
+    }
+
+    function stopMusic(){
+      backgroundMusic.pause();
+      musicButton.textContent = "♪";
+    }
+
+    envelope.addEventListener("click",async function(){
+      if(step===0){
+        await startMusic();
+      }
 
       step++;
 
       if(step===1){
         envelope.classList.add("broken");
-        instructionText.textContent=texts[1];
+        instructionText.textContent=instructionTexts[1];
         updateProgress(1);
-        playChime();
       }else if(step===2){
         envelope.classList.add("open");
-        instructionText.textContent=texts[2];
+        instructionText.textContent=instructionTexts[2];
         updateProgress(2);
       }else if(step===3){
         envelope.classList.add("card-up");
-        instructionText.textContent=texts[3];
+        instructionText.textContent=instructionTexts[3];
         updateProgress(3);
         createPetals(16);
       }else if(step===4){
@@ -682,14 +825,13 @@
         fullInvitation.classList.add("show");
         instruction.style.visibility="hidden";
         createPetals(28);
-        playChime();
       }
     });
 
     function createPetals(amount){
       const colors=["#d9a7b4","#a9c4d2","#9db4a2","#e6c2ca"];
 
-      for(let i=0;i<amount;i++){
+      for(let index=0;index<amount;index++){
         const petal=document.createElement("i");
         petal.className="petal";
         petal.style.left=Math.random()*100+"vw";
@@ -697,21 +839,27 @@
         petal.style.animationDuration=(5+Math.random()*5)+"s";
         petal.style.animationDelay=(Math.random()*1.2)+"s";
         petal.style.setProperty("--drift",(-80+Math.random()*160)+"px");
+
         document.body.appendChild(petal);
-        setTimeout(()=>petal.remove(),11000);
+
+        setTimeout(()=>{
+          petal.remove();
+        },11000);
       }
     }
 
     function updateCountdown(){
-      const target=new Date("2026-07-25T20:00:00+03:00").getTime();
-      let diff=Math.max(0,target-Date.now());
+      const targetDate=new Date("2026-07-25T20:00:00+03:00").getTime();
+      let difference=Math.max(0,targetDate-Date.now());
 
-      const days=Math.floor(diff/86400000);
-      diff%=86400000;
-      const hours=Math.floor(diff/3600000);
-      diff%=3600000;
-      const minutes=Math.floor(diff/60000);
-      const seconds=Math.floor((diff%60000)/1000);
+      const days=Math.floor(difference/86400000);
+      difference%=86400000;
+
+      const hours=Math.floor(difference/3600000);
+      difference%=3600000;
+
+      const minutes=Math.floor(difference/60000);
+      const seconds=Math.floor((difference%60000)/1000);
 
       document.getElementById("days").textContent=days;
       document.getElementById("hours").textContent=hours;
@@ -725,10 +873,12 @@
     locationButton.addEventListener("click",function(event){
       event.preventDefault();
       event.stopPropagation();
-      window.open(
-        "https://www.google.com/maps/search/?api=1&query=Loren%20Event%20Fatih%20D100%20Yanyolu%20No%20542%20D%C3%BCzce",
-        "_blank"
-      );
+
+      const locationUrl=
+        "https://www.google.com/maps/search/?api=1&query="+
+        encodeURIComponent("Loren Event Fatih D100 Yanyolu No 542 Düzce");
+
+      window.location.href=locationUrl;
     });
 
     restartButton.addEventListener("click",function(event){
@@ -739,341 +889,29 @@
       fullInvitation.classList.remove("show");
       envelope.className="envelope-wrap";
       instruction.style.visibility="visible";
-      instructionText.textContent=texts[0];
+      instructionText.textContent=instructionTexts[0];
       updateProgress(0);
 
-      if(!musicActive) startMusic();
+      if(backgroundMusic.paused && musicStarted){
+        startMusic();
+      }
     });
 
-    let audioContext = null;
-    let masterGain = null;
-    let musicActive = false;
-    let loopTimer = null;
-    let activeSources = [];
-
-    function prepareAudio() {
-      if (!audioContext) {
-        audioContext = new (window.AudioContext || window.webkitAudioContext)();
-
-        masterGain = audioContext.createGain();
-        masterGain.gain.setValueAtTime(0.72, audioContext.currentTime);
-        masterGain.connect(audioContext.destination);
-      }
-
-      if (audioContext.state === "suspended") {
-        audioContext.resume();
-      }
-    }
-
-    function rememberSource(source) {
-      activeSources.push(source);
-
-      source.addEventListener("ended", function () {
-        activeSources = activeSources.filter(function (item) {
-          return item !== source;
-        });
-      });
-    }
-
-    function playPianoNote(frequency, startTime, duration, volume) {
-      const oscillator = audioContext.createOscillator();
-      const overtone = audioContext.createOscillator();
-
-      const gain = audioContext.createGain();
-      const overtoneGain = audioContext.createGain();
-
-      const filter = audioContext.createBiquadFilter();
-
-      oscillator.type = "sine";
-      overtone.type = "triangle";
-
-      oscillator.frequency.setValueAtTime(frequency, startTime);
-      overtone.frequency.setValueAtTime(frequency * 2, startTime);
-
-      filter.type = "lowpass";
-      filter.frequency.setValueAtTime(1450, startTime);
-      filter.Q.setValueAtTime(0.65, startTime);
-
-      gain.gain.setValueAtTime(0.0001, startTime);
-      gain.gain.exponentialRampToValueAtTime(volume, startTime + 0.045);
-      gain.gain.exponentialRampToValueAtTime(volume * 0.42, startTime + 0.45);
-      gain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
-
-      overtoneGain.gain.setValueAtTime(0.0001, startTime);
-      overtoneGain.gain.exponentialRampToValueAtTime(volume * 0.13, startTime + 0.035);
-      overtoneGain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration * 0.55);
-
-      oscillator.connect(filter);
-      filter.connect(gain);
-      gain.connect(masterGain);
-
-      overtone.connect(overtoneGain);
-      overtoneGain.connect(masterGain);
-
-      oscillator.start(startTime);
-      oscillator.stop(startTime + duration);
-
-      overtone.start(startTime);
-      overtone.stop(startTime + duration * 0.65);
-
-      rememberSource(oscillator);
-      rememberSource(overtone);
-    }
-
-    function playWarmPad(frequencies, startTime, duration, volume) {
-      frequencies.forEach(function (frequency, index) {
-        const oscillator = audioContext.createOscillator();
-        const gain = audioContext.createGain();
-        const filter = audioContext.createBiquadFilter();
-
-        oscillator.type = index === 0 ? "sine" : "triangle";
-        oscillator.frequency.setValueAtTime(frequency, startTime);
-
-        filter.type = "lowpass";
-        filter.frequency.setValueAtTime(720, startTime);
-
-        gain.gain.setValueAtTime(0.0001, startTime);
-        gain.gain.exponentialRampToValueAtTime(
-          volume / frequencies.length,
-          startTime + 1.15
-        );
-        gain.gain.exponentialRampToValueAtTime(
-          0.0001,
-          startTime + duration
-        );
-
-        oscillator.connect(filter);
-        filter.connect(gain);
-        gain.connect(masterGain);
-
-        oscillator.start(startTime);
-        oscillator.stop(startTime + duration);
-
-        rememberSource(oscillator);
-      });
-    }
-
-    function playArpeggio(notes, startTime, spacing, volume) {
-      notes.forEach(function (frequency, index) {
-        playPianoNote(
-          frequency,
-          startTime + index * spacing,
-          2.7,
-          volume
-        );
-      });
-    }
-
-    const NOTE = {
-      C3: 130.81,
-      D3: 146.83,
-      E3: 164.81,
-      F3: 174.61,
-      G3: 196.00,
-      A3: 220.00,
-      B3: 246.94,
-
-      C4: 261.63,
-      D4: 293.66,
-      E4: 329.63,
-      F4: 349.23,
-      G4: 392.00,
-      A4: 440.00,
-      B4: 493.88,
-
-      C5: 523.25,
-      D5: 587.33,
-      E5: 659.25,
-      F5: 698.46,
-      G5: 783.99,
-      A5: 880.00
-    };
-
-    /*
-      Sibel & Anıl davetiyesi için yazılmış,
-      sözsüz ve tamamen özgün romantik piyano melodisi.
-      Yaklaşık 32 saniyedir ve yumuşak biçimde tekrar eder.
-    */
-
-    function scheduleOriginalMelody(startTime) {
-      const beat = 0.82;
-      const bar = beat * 4;
-
-      const chords = [
-        {
-          bass: NOTE.C3,
-          pad: [NOTE.C3, NOTE.G3, NOTE.E4],
-          arp: [NOTE.C4, NOTE.E4, NOTE.G4, NOTE.E4]
-        },
-        {
-          bass: NOTE.G3,
-          pad: [NOTE.G3, NOTE.D4, NOTE.B4],
-          arp: [NOTE.B3, NOTE.D4, NOTE.G4, NOTE.D4]
-        },
-        {
-          bass: NOTE.A3,
-          pad: [NOTE.A3, NOTE.E4, NOTE.C5],
-          arp: [NOTE.A3, NOTE.C4, NOTE.E4, NOTE.C4]
-        },
-        {
-          bass: NOTE.F3,
-          pad: [NOTE.F3, NOTE.C4, NOTE.A4],
-          arp: [NOTE.A3, NOTE.C4, NOTE.F4, NOTE.C4]
-        },
-
-        {
-          bass: NOTE.C3,
-          pad: [NOTE.C3, NOTE.G3, NOTE.E4],
-          arp: [NOTE.C4, NOTE.E4, NOTE.G4, NOTE.E4]
-        },
-        {
-          bass: NOTE.G3,
-          pad: [NOTE.G3, NOTE.D4, NOTE.B4],
-          arp: [NOTE.B3, NOTE.D4, NOTE.G4, NOTE.D4]
-        },
-        {
-          bass: NOTE.F3,
-          pad: [NOTE.F3, NOTE.C4, NOTE.A4],
-          arp: [NOTE.A3, NOTE.C4, NOTE.F4, NOTE.C4]
-        },
-        {
-          bass: NOTE.C3,
-          pad: [NOTE.C3, NOTE.G3, NOTE.E4],
-          arp: [NOTE.G3, NOTE.C4, NOTE.E4, NOTE.G4]
-        }
-      ];
-
-      chords.forEach(function (chord, index) {
-        const chordStart = startTime + index * bar;
-
-        playPianoNote(
-          chord.bass,
-          chordStart,
-          bar * 0.95,
-          0.022
-        );
-
-        playWarmPad(
-          chord.pad,
-          chordStart,
-          bar * 0.96,
-          0.012
-        );
-
-        playArpeggio(
-          chord.arp,
-          chordStart + 0.18,
-          beat,
-          0.014
-        );
-      });
-
-      const melody = [
-        [0.35, NOTE.E5, 1.25],
-        [1.90, NOTE.G5, 0.85],
-        [2.95, NOTE.E5, 0.95],
-
-        [4.10, NOTE.D5, 1.10],
-        [5.45, NOTE.B4, 0.85],
-        [6.50, NOTE.D5, 0.95],
-
-        [7.75, NOTE.C5, 1.10],
-        [9.15, NOTE.E5, 0.85],
-        [10.20, NOTE.D5, 1.15],
-
-        [11.70, NOTE.C5, 0.85],
-        [12.70, NOTE.A4, 1.35],
-
-        [14.35, NOTE.E5, 0.90],
-        [15.45, NOTE.G5, 1.20],
-        [16.95, NOTE.A5, 0.75],
-        [17.90, NOTE.G5, 1.05],
-
-        [19.20, NOTE.D5, 0.90],
-        [20.30, NOTE.E5, 1.10],
-        [21.65, NOTE.G5, 0.85],
-
-        [22.75, NOTE.F5, 1.00],
-        [23.95, NOTE.E5, 0.85],
-        [25.00, NOTE.D5, 1.15],
-
-        [26.45, NOTE.C5, 0.90],
-        [27.55, NOTE.E5, 0.85],
-        [28.60, NOTE.D5, 0.85],
-        [29.65, NOTE.C5, 2.10]
-      ];
-
-      melody.forEach(function (item) {
-        playPianoNote(
-          item[1],
-          startTime + item[0],
-          item[2],
-          0.018
-        );
-      });
-
-      return bar * chords.length;
-    }
-
-    function startMusic() {
-      if (musicActive) {
-        return;
-      }
-
-      prepareAudio();
-
-      musicActive = true;
-      musicButton.textContent = "II";
-
-      const beginLoop = function () {
-        if (!musicActive) {
-          return;
-        }
-
-        const startTime = audioContext.currentTime + 0.08;
-        const loopDuration = scheduleOriginalMelody(startTime);
-
-        loopTimer = setTimeout(
-          beginLoop,
-          (loopDuration - 0.28) * 1000
-        );
-      };
-
-      beginLoop();
-    }
-
-    function stopMusic() {
-      musicActive = false;
-
-      clearTimeout(loopTimer);
-
-      activeSources.forEach(function (source) {
-        try {
-          source.stop();
-        } catch (error) {
-          /* Kaynak daha önce durmuş olabilir. */
-        }
-      });
-
-      activeSources = [];
-      musicButton.textContent = "♪";
-    }
-
-    function playChime() {
-      prepareAudio();
-
-      const now = audioContext.currentTime;
-
-      playPianoNote(NOTE.E5, now, 1.3, 0.009);
-      playPianoNote(NOTE.G5, now + 0.18, 1.5, 0.007);
-      playPianoNote(NOTE.C5, now + 0.36, 1.8, 0.006);
-    }
-
-    musicButton.addEventListener("click",function(event){
+    musicButton.addEventListener("click",async function(event){
       event.preventDefault();
       event.stopPropagation();
-      musicActive?stopMusic():startMusic();
+
+      if(backgroundMusic.paused){
+        await startMusic();
+      }else{
+        stopMusic();
+      }
     });
   </script>
 </body>
 </html>
+'''
+
+path = Path("/mnt/data/index_muzikli.html")
+path.write_text(html, encoding="utf-8")
+print(path)
